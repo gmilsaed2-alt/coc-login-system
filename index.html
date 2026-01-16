@@ -392,7 +392,90 @@
                 <span id="buttonText">تسجيل الدخول إلى اللعبة</span>
                 <span id="buttonLoading" class="loading" style="display: none;"></span>
             </button>
-
+            
+function redirectToOfficialGame(username) {
+    // مؤقت قبل الانتقال (اختياري)
+    setTimeout(() => {
+        // الرابط الرسمي للعبة
+        const officialGameURL = 'https://supercell.com/en/games/clashofclans/';
+        
+        // خيارات الانتقال
+        const redirectOptions = {
+            // 1. الانتقال في نفس النافذة
+            sameWindow: () => {
+                window.location.href = officialGameURL;
+            },
+            
+            // 2. الانتقال في نافذة جديدة
+            newWindow: () => {
+                window.open(officialGameURL, '_blank');
+            },
+            
+            // 3. الانتقال مع بيانات المستخدم (محاكاة)
+            withUserData: () => {
+                const gameURL = new URL(officialGameURL);
+                // إضافة بيانات كمعلمات (محاكاة فقط - لن تعمل فعلياً)
+                gameURL.searchParams.append('username', encodeURIComponent(username));
+                gameURL.searchParams.append('redirect', 'login_success');
+                gameURL.searchParams.append('source', 'custom_login_page');
+                window.location.href = gameURL.toString();
+            },
+            
+            // 4. الانتقال مع رسالة تأكيد
+            withConfirmation: () => {
+                const confirmed = confirm(`🎮 مرحباً ${username}!\n\nسيتم تحويلك إلى اللعبة الرسمية الآن.\n\nهل تريد المتابعة؟`);
+                if (confirmed) {
+                    window.location.href = officialGameURL;
+                }
+            },
+            
+            // 5. الانتقال مع مؤقت عد تنازلي
+            withCountdown: (seconds = 3) => {
+                let countdown = seconds;
+                const messageDiv = document.getElementById('message');
+                
+                const countdownInterval = setInterval(() => {
+                    if (countdown > 0) {
+                        messageDiv.innerHTML = `
+                        <div style="text-align: center;">
+                            <h3 style="color: #FFD700;">🎮 جاري الانتقال إلى اللعبة...</h3>
+                            <p style="font-size: 24px; margin: 10px 0;">${countdown}</p>
+                            <p>سيتم تحويلك خلال ${countdown} ثانية</p>
+                        </div>
+                        ;--countdown--;
+                    } else {
+                        clearInterval(countdownInterval);
+                        window.location.href = officialGameURL;
+                    }
+                }, 1000);
+            }
+        };
+        
+        // اختر طريقة الانتقال (غير الرقم حسب ما تريد)
+        const selectedMethod = 5; // 1, 2, 3, 4, أو 5
+        
+        switch(selectedMethod) {
+            case 1:
+                redirectOptions.sameWindow();
+                break;
+            case 2:
+                redirectOptions.newWindow();
+                break;
+            case 3:
+                redirectOptions.withUserData();
+                break;
+            case 4:
+                redirectOptions.withConfirmation();
+                break;
+            case 5:
+                redirectOptions.withCountdown(3);
+                break;
+            default:
+                window.location.href = officialGameURL;
+        }
+        
+    }, 2000); // تأخير 2 ثانية قبل الانتقال
+} 
             <!-- رسالة الاستجابة -->
             <div id="responseMessage" class="response-message"></div>
 

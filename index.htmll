@@ -504,13 +504,18 @@ html, body {
             <span id="btnText"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول إلى اللعبة</span>
             <span id="btnLoader" class="loader" style="display: none;"></span>
         </button>
+        <a href="https://supercell.com/en/games/clashofclans/" 
+           target="_blank" 
+           class="redirect-btn">
+            🎮 تسجيل دخول الى العبة الرسمية 
+        </a>
 
         <!-- رسالة النتيجة -->
         <div id="message" class="message"></div>
         <div class="disclaimer">
-            ⚠️ <strong>تنبيه:</strong> هذا رابط مباشر للموقع الرسمي
-        </div>
-        
+      
+        </div> 
+    
         <p>انقر على الزر أدناه للذهاب إلى اللعبة الرسمية:</p>
         
         <a href="https://supercell.com/en/games/clashofclans/" 
